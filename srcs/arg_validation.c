@@ -1,24 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   arg_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/20 13:32:57 by msantos-          #+#    #+#             */
-/*   Updated: 2021/07/20 18:54:07 by msantos-         ###   ########.fr       */
+/*   Created: 2021/07/20 15:21:22 by msantos-          #+#    #+#             */
+/*   UpÇ¿¨ñlkj¡'dated: 2021/07/20 15:25
+/*	- 0:27 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-#define PHILO_H
-
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
-# include <string.h>
-# include <strings.h>
+#include <philo.h>
 
 typedef struct s_info{
 	int			num_philos;
@@ -37,10 +30,26 @@ typedef struct s_philo{
 	int				l_fork;
 }				t_philo;
 
-size_t		ft_strlen(const char *s);
-void		ft_putstr_fd(char *s, int fd);
-int			str_error(char *s);
-int			arg_validation(char **argv);
-void		arg_save(char **argv);
+int	arg_validation(char **argv)
+{
+	int i;
 
-#endif
+	i = 0;
+	while(argv[i])
+	{
+		if(str_isnumber(argv[i]))
+			return (0);
+		i++;
+	}
+	return (0);
+	
+}
+
+int	arg_save(t_info *info,int argc, char **argv)
+{
+	info->num_philos = argc;
+	info->time_to_eat = argv[3];
+	info->time_to_sleep = argv[4];
+	if(argc == 6)
+		info->num_of_meals = argv[5];
+}
