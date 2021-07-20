@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:32:57 by msantos-          #+#    #+#             */
-/*   Updated: 2021/07/20 18:54:07 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/07/20 19:53:30 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@
 # include <string.h>
 # include <strings.h>
 
+typedef struct s_philo{
+	int				id;
+	int				status; // 0 eating, 1 sleeping, 2 thinking
+	int				time_to_die;
+	int				r_fork; // 0 if not used, 1 if used
+	int				l_fork;
+}				t_philo;
+
 typedef struct s_info{
 	int			num_philos;
 	
@@ -29,18 +37,12 @@ typedef struct s_info{
 	t_philo		*philosophers;
 }				t_info;
 
-typedef struct s_philo{
-	int				id;
-	int				status; // 0 eating, 1 sleeping, 2 thinking
-	int				time_to_die;
-	int				r_fork; // 0 if not used, 1 if used
-	int				l_fork;
-}				t_philo;
-
 size_t		ft_strlen(const char *s);
 void		ft_putstr_fd(char *s, int fd);
 int			str_error(char *s);
+int			ft_atoi(const char *str);
+int			str_isnumber(char *str);
 int			arg_validation(char **argv);
-void		arg_save(char **argv);
+void		arg_save(t_info *info,int argc, char **argv);
 
 #endif

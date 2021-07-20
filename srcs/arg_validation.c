@@ -5,14 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/20 15:21:22 by msantos-          #+#    #+#             */
-/*   UpÇ¿¨ñlkj¡'dated: 2021/07/20 15:25
-/*	- 0:27 by msantos-         ###   ########.fr       */
+/*   Created: 2021/07/20 19:54:15 by msantos-          #+#    #+#             */
+/*   Updated: 2021/07/20 19:55:33 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
-
+/*
 typedef struct s_info{
 	int			num_philos;
 	
@@ -29,7 +28,7 @@ typedef struct s_philo{
 	int				r_fork; // 0 if not used, 1 if used
 	int				l_fork;
 }				t_philo;
-
+*/
 int	arg_validation(char **argv)
 {
 	int i;
@@ -41,15 +40,14 @@ int	arg_validation(char **argv)
 			return (0);
 		i++;
 	}
-	return (0);
-	
+	return (1);
 }
 
-int	arg_save(t_info *info,int argc, char **argv)
+void	arg_save(t_info *info,int argc, char **argv)
 {
 	info->num_philos = argc;
-	info->time_to_eat = argv[3];
-	info->time_to_sleep = argv[4];
+	info->time_to_eat = ft_atoi(argv[3]);
+	info->time_to_sleep = ft_atoi(argv[4]);
 	if(argc == 6)
-		info->num_of_meals = argv[5];
+		info->num_of_meals = ft_atoi(argv[5]);
 }

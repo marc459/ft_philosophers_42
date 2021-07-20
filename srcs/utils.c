@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 17:17:37 by msantos-          #+#    #+#             */
-/*   Updated: 2021/07/20 18:42:04 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/07/20 19:47:28 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,33 @@ int	str_isnumber(char *str)
 		i++;
 	}
 	return (1);
+}
+
+int	ft_atoi(const char *str)
+{
+	unsigned int	i;
+	int				minus;
+	long			value;
+
+	value = 0;
+	minus = 0;
+	i = 0;
+	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\f'
+		|| str[i] == '\r' || str[i] == '\t' || str[i] == '\v')
+		i++;
+	if (str[i] == '-')
+		minus++;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+		return (0);
+	while (str[i] <= 57 && str[i] >= 48)
+	{
+		value *= 10;
+		value += str[i] - '0';
+		i++;
+	}
+	if (minus == 1)
+		value = value * -1;
+	return (value);
 }

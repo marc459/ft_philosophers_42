@@ -6,17 +6,12 @@
 #    By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 16:49:30 by msantos-          #+#    #+#              #
-#    Updated: 2021/07/20 15:35:44 by msantos-         ###   ########.fr        #
+#    Updated: 2021/07/20 19:45:58 by msantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #PROGRAMS
 PHILO = philo
-
-#LIBS
-LIBFT = libft_42/libft.a
-PRINTF = ft_printf_42/libftprintf.a
-LIBS = $(LIBFT) $(PRINTF)
 
 INCLUDES = -I ./includes
 
@@ -25,7 +20,7 @@ OBJ_PATH = ./objs
 SRC_PATH = ./srcs
 
 #SRCS
-SRCS = philo.c
+SRCS = philo.c utils.c arg_validation.c
 OBJS = $(SRCS:.c=.o)
 
 #OBJS
