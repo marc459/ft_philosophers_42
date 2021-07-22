@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:32:57 by msantos-          #+#    #+#             */
-/*   Updated: 2021/07/22 19:37:17 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/07/22 22:11:27 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,18 @@
 # include <strings.h>
 # include <pthread.h>
 #include <sys/time.h>
-
 typedef struct s_philo{
 	int				id;
 	pthread_t		thread;
 	int				status; // 0 eating, 1 sleeping, 2 thinking
+	int				num_philos;
 	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
 	//int				r_fork; // 0 if not used, 1 if used
 	//int				l_fork;
+	
+
 }				t_philo;
 
 typedef struct s_info{
@@ -37,8 +41,8 @@ typedef struct s_info{
 	int				time_to_sleep;
 	int				num_of_meals;
 	t_philo			*philosophers;
-	int				*used_forks;
-	pthread_mutex_t	*mutex;
+	//int				*used_forks;
+	//pthread_mutex_t	*mutex;
 }				t_info;
 
 size_t		ft_strlen(const char *s);
