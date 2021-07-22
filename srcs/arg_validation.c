@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 19:54:15 by msantos-          #+#    #+#             */
-/*   Updated: 2021/07/20 19:55:33 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/07/22 19:39:28 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ typedef struct s_philo{
 	int				l_fork;
 }				t_philo;
 */
+
 int	arg_validation(char **argv)
 {
 	int i;
 
-	i = 0;
+	i = 1;
 	while(argv[i])
 	{
-		if(str_isnumber(argv[i]))
+		if(!str_isnumber(argv[i]))
 			return (0);
 		i++;
 	}
@@ -45,9 +46,26 @@ int	arg_validation(char **argv)
 
 void	arg_save(t_info *info,int argc, char **argv)
 {
-	info->num_philos = argc;
+	int i;
+
+	i = 0;
+	info->num_philos = ft_atoi(argv[1]);
 	info->time_to_eat = ft_atoi(argv[3]);
 	info->time_to_sleep = ft_atoi(argv[4]);
 	if(argc == 6)
 		info->num_of_meals = ft_atoi(argv[5]);
+	else
+		info->num_of_meals = 0;
+	info->philosophers = malloc(sizeof(t_philo) * info->num_philos);
+	info->used_forks = malloc(sizeof(int) * info->num_philos);
+
+
+	while(i < info->num_philos)
+	{
+		info->philosophers[i].id = i;
+		info->philosophers[i].status = -1;
+		info->philosophers[i].time_to_die = ft_atoi(argv[2]);
+		i++;
+	}
+	//printf("info->num_philos %d\ninfo->time_to_eat %d\ninfo->time_to_sleep %d\ninfo->num_of_meals %d\n",info->num_philos,info->time_to_eat, info->time_to_sleep,info->num_of_meals);
 }

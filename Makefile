@@ -6,7 +6,7 @@
 #    By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 16:49:30 by msantos-          #+#    #+#              #
-#    Updated: 2021/07/20 19:45:58 by msantos-         ###   ########.fr        #
+#    Updated: 2021/07/22 17:43:38 by msantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,6 @@ clean:
 	@rm -rf $(OBJ_PATH)
 
 fclean: clean
-	@rm -rf $(PHILO)
-	@make fclean -C ft_printf_42 > /dev/null
-	@make fclean -C libft_42 > /dev/null
+	@rm -rf $(PHILO) 
 
 re: fclean all
