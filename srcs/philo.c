@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:14:04 by msantos-          #+#    #+#             */
-/*   Updated: 2021/07/22 22:26:38 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/07/23 23:14:02 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	*philo_doroutine(void *arg_philo)
 {
 	t_philo *philo = (t_philo *)arg_philo;
 	struct timeval current_time;
-	int time;
   	
 	//printf("Starting routine philo Nº %d\n", philo1->id);
 	//printf("seconds : %ld\nmicro seconds : %ld\n\n", current_time.tv_sec, current_time.tv_usec);
@@ -30,7 +29,7 @@ void	*philo_doroutine(void *arg_philo)
 		right_fork = &forks[philo->id + 1];
 	else
 		right_fork = &forks[0];
-
+	/*TIME TO EAT*/
 	pthread_mutex_lock(left_fork);
 	printf("Philosopher %d picked up his left fork.\n", philo->id + 1);
 	pthread_mutex_lock(right_fork);
@@ -41,14 +40,17 @@ void	*philo_doroutine(void *arg_philo)
 	printf("Philosopher %d is done eating and has released his forks.\n", philo->id + 1);
 
 
-	/*TESTING GET OF TIME*/
+	/*TIME TO SLEEP*/
 	gettimeofday(&current_time, NULL);
-	printf("cu->%d\n",current_time.tv_usec);
-	time = current_time.tv_usec;
-	usleep(900);
+	printf("Philosopher %d is sleeping> %ld\n",philo->id + 1, current_time.tv_usec);
+	philo->starving_time = current_time.tv_usec;
+	usleep(philo->time_to_sleep);
 	gettimeofday(&current_time, NULL);
-	printf("pu->%d\n",current_time.tv_usec);
-	printf("how many time passed? %d\n",current_time.tv_usec - time);
+	if(philo->time_to_die < current_time.tv_usec - philo->starving_time)
+	{
+		printf("Philosopher %d died\n",philo->id + 1);
+		exit(-1);
+	}
 	return(NULL);
 }
 
@@ -82,7 +84,8 @@ int main(int argc, char **argv)
 		str_error("Error: \n Incorrect arguments\n");
 	arg_save(&info ,argc, argv);
 	
-	philo_meeting(&info);
+	while(1)
+		philo_meeting(&info);
 	
 	
 	return (0);

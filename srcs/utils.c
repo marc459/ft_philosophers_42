@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 17:17:37 by msantos-          #+#    #+#             */
-/*   Updated: 2021/07/22 17:49:50 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/07/23 21:25:22 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+typedef unsigned int	t_uint;
+# include <pthread.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <sys/time.h>
+# include <limits.h>
 
 size_t	ft_strlen(const char *s)
 {
@@ -92,4 +99,26 @@ int	ft_atoi(const char *str)
 	if (minus == 1)
 		value = value * -1;
 	return (value);
+}
+
+void	ft_usleep(int miliseconds)
+{
+	int	start;
+
+	start = ft_time(0);
+	while (ft_time(start) < miliseconds)
+	{
+		usleep(1);
+	}
+}
+
+int		ft_time(int start)
+{
+	int			current_time;
+	struct timeval		aux_clock;
+
+	gettimeofday(&aux_clock, NULL);
+	current_time = (int)
+		((aux_clock.tv_usec / 1000) + (aux_clock.tv_sec * 1000));
+	return (current_time - start);
 }
