@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arg_validation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 19:54:15 by msantos-          #+#    #+#             */
-/*   Updated: 2021/07/22 22:10:53 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/07/24 21:31:36 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	arg_save(t_info *info,int argc, char **argv)
 	else
 		info->num_of_meals = 0;
 	info->philosophers = malloc(sizeof(t_philo) * info->num_philos);
-	//info->used_forks = malloc(sizeof(int) * info->num_philos);
+	forks = malloc(sizeof(pthread_mutex_t) * info->num_philos);
 
 	while(i < info->num_philos)
 	{
@@ -49,6 +49,10 @@ void	arg_save(t_info *info,int argc, char **argv)
 		info->philosophers[i].time_to_die = ft_atoi(argv[2]);
 		info->philosophers[i].time_to_eat = ft_atoi(argv[3]);
 		info->philosophers[i].time_to_sleep = ft_atoi(argv[4]);
+		if(argc == 6)
+			info->num_of_meals = ft_atoi(argv[5]);
+		else
+			info->num_of_meals = 0;
 		i++;
 	}
 }

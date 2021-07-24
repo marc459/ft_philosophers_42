@@ -6,7 +6,7 @@
 #    By: marcos <marcos@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 16:49:30 by msantos-          #+#    #+#              #
-#    Updated: 2021/07/23 18:26:52 by marcos           ###   ########.fr        #
+#    Updated: 2021/07/24 21:49:14 by marcos           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ all:  philo
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir -p $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) $(INCLUDES)  -o $@  -c $^
+	@$(CC) $(INCLUDES) -o $@  -c $^
 
 philo: $(OBJ)
 	$(CC) $(THREADFLAG) $(OBJ) -o $(PHILO)

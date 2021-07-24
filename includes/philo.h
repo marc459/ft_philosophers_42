@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:32:57 by msantos-          #+#    #+#             */
-/*   Updated: 2021/07/23 21:39:24 by marcos           ###   ########.fr       */
+/*   Updated: 2021/07/24 21:07:57 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ typedef struct s_philo{
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				starving_time;
-	//int				r_fork; // 0 if not used, 1 if used
-	//int				l_fork;
+	int				num_of_meals;
+	pthread_mutex_t	*r_fork; // 0 if not used, 1 if used
+	pthread_mutex_t	*l_fork;
 	
 
 }				t_philo;
@@ -45,6 +46,8 @@ typedef struct s_info{
 	//int				*used_forks;
 	//pthread_mutex_t	*mutex;
 }				t_info;
+
+pthread_mutex_t *forks;
 
 size_t		ft_strlen(const char *s);
 void		ft_putstr_fd(char *s, int fd);
