@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:32:57 by msantos-          #+#    #+#             */
-/*   Updated: 2021/07/24 21:07:57 by marcos           ###   ########.fr       */
+/*   Updated: 2021/07/26 19:59:57 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 # include <strings.h>
 # include <pthread.h>
 # include <sys/time.h>
+
+# define RED "\033[0;31m"
+# define GREEN "\033[0;32m"
+# define YELLOW "\033[0;33m"
+# define CYAN "\033[0;36m"
+# define PURPLE "\033[0;35m"
+# define RESET_COLOR "\033[0;m"
 typedef struct s_philo{
 	int				id;
 	pthread_t		thread;
