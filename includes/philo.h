@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:32:57 by msantos-          #+#    #+#             */
-/*   Updated: 2021/07/26 19:59:57 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/04 22:16:20 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ int			ft_time(int start);
 int			str_isnumber(char *str);
 int			arg_validation(char **argv);
 void		arg_save(t_info *info,int argc, char **argv);
+int			start_clock(void);
 
 #endif

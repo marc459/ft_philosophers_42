@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 17:17:37 by msantos-          #+#    #+#             */
-/*   Updated: 2021/07/26 15:21:41 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/04 22:47:03 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,4 +114,11 @@ int		ft_time(int start)
 	current_time = (int)
 		((aux_clock.tv_usec / 1000) + (aux_clock.tv_sec * 1000));
 	return (current_time - start);
+}
+int	start_clock(void)
+{
+	struct timeval	aux_clock;
+
+	gettimeofday(&aux_clock, NULL);
+	return ((int)((aux_clock.tv_usec / 1000)) + (aux_clock.tv_sec * 1000));
 }
