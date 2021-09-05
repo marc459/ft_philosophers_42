@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:32:57 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/04 22:16:20 by marcos           ###   ########.fr       */
+/*   Updated: 2021/09/05 16:38:43 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_philo{
 	int				time_to_sleep;
 	int				starving_time;
 	int				num_of_meals;
+	int				start;
 	pthread_mutex_t	*r_fork; // 0 if not used, 1 if used
 	pthread_mutex_t	*l_fork;
 	

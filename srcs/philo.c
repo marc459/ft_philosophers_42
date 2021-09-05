@@ -6,11 +6,20 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:14:04 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/04 22:58:35 by marcos           ###   ########.fr       */
+/*   Updated: 2021/09/05 16:44:08 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+
+void	isittheendofphilo(t_philo *philo)
+{
+	if(philo->time_to_die < (start_clock() - philo->starving_time))
+		{
+			printf("%d ms :: %s Philosopher %d died%s\n",start_clock() - philo->start ,RED, philo->id + 1, RESET_COLOR);
+			exit(-1);
+		}
+}
 
 void	*philo_doroutine(void *arg_philo)
 {
@@ -18,10 +27,8 @@ void	*philo_doroutine(void *arg_philo)
 	t_philo *philo = (t_philo *)arg_philo;
 	struct timeval current_time;
 	int time;
-	int time2;
 
-
-	
+	philo->start = start_clock();
 	while(1)
 	{
 		// FORK DEFINITION
@@ -36,49 +43,40 @@ void	*philo_doroutine(void *arg_philo)
 		//printf("%d lf %p rf %p\n",philo->id + 1,philo->l_fork, philo->r_fork);
 
 		/*TIME TO EAT*/
-		time2 = start_clock();
-		printf("Before eating: %d, %d\n", time2,philo->id + 1);
 		if (philo->id == (philo->num_philos - 1))
 		{
 		pthread_mutex_lock(philo->r_fork);
-		printf("%d ms :: %sPhilosopher %d picked up his left fork.%s\n",time,  GREEN, philo->id + 1, RESET_COLOR);
+		printf("%d ms :: %sPhilosopher %d picked up his left fork.%s\n",start_clock() - philo->start,  GREEN, philo->id + 1, RESET_COLOR);
 		pthread_mutex_lock(philo->l_fork);
-		printf("%d ms :: %sPhilosopher %d picked up his right fork %s\n",time,  GREEN, philo->id + 1, RESET_COLOR);
-		printf("%d ms :: %sPhilosopher %d is eating%s\n",time, CYAN, philo->id + 1, RESET_COLOR);
+		printf("%d ms :: %sPhilosopher %d picked up his right fork %s\n",start_clock() - philo->start,  GREEN, philo->id + 1, RESET_COLOR);
+		printf("%d ms :: %sPhilosopher %d is eating%s\n",start_clock() - philo->start, CYAN, philo->id + 1, RESET_COLOR);
 			
 		}
 		else
 		{
 			pthread_mutex_lock(philo->l_fork);
-		printf("%d ms :: %sPhilosopher %d picked up his left fork.%s\n",time,  GREEN, philo->id + 1, RESET_COLOR);
+		printf("%d ms :: %sPhilosopher %d picked up his left fork.%s\n",start_clock() - philo->start,  GREEN, philo->id + 1, RESET_COLOR);
 		pthread_mutex_lock(philo->r_fork);
-		printf("%d ms :: %sPhilosopher %d picked up his right fork %s\n",time,  GREEN, philo->id + 1, RESET_COLOR);
-		printf("%d ms :: %sPhilosopher %d is eating%s\n",time, CYAN, philo->id + 1, RESET_COLOR);
+		printf("%d ms :: %sPhilosopher %d picked up his right fork %s\n",start_clock() - philo->start,  GREEN, philo->id + 1, RESET_COLOR);
+		printf("%d ms :: %sPhilosopher %d is eating%s\n",start_clock() - philo->start, CYAN, philo->id + 1, RESET_COLOR);
 		}
-		usleep(philo->time_to_eat);
+		//usleep(philo->time_to_eat);
 		ft_usleep(philo->time_to_eat);
-		time += philo->time_to_eat;
+		philo->starving_time = start_clock();
 		pthread_mutex_unlock(philo->l_fork);
 		pthread_mutex_unlock(philo->r_fork);
-		
-		time2 = start_clock() - time2;
-		printf("After eating: %d, %d\n", time2,philo->id + 1);
-		
-		printf("%d ms :: %sPhilosopher %d is done eating and has released his forks.%s\n",time ,GREEN, philo->id + 1, RESET_COLOR);
+		isittheendofphilo(philo);
+	
+		printf("%d ms :: %sPhilosopher %d is done eating and has released his forks.%s\n",start_clock() - philo->start ,GREEN, philo->id + 1, RESET_COLOR);
 		
 		/*TIME TO SLEEP*/
-		gettimeofday(&current_time, NULL);
-		printf("%ld , %d ms :: %sPhilosopher %d is sleeping %s\n",current_time.tv_usec - time, time, YELLOW, philo->id + 1, RESET_COLOR);
-		philo->starving_time = current_time.tv_usec;
-		usleep(philo->time_to_sleep);
-		time += philo->time_to_sleep;
-		gettimeofday(&current_time, NULL);
-
-		if(philo->time_to_die < current_time.tv_usec - philo->starving_time)
-		{
-			printf("%d ms :: %s Philosopher %d died%s\n",time ,RED, philo->id + 1, RESET_COLOR);
-			exit(-1);
-		}
+		printf("%d ms :: %sPhilosopher %d is sleeping %s\n",start_clock() - philo->start, YELLOW, philo->id + 1, RESET_COLOR);
+		ft_usleep(philo->time_to_sleep);
+		isittheendofphilo(philo);
+		/*TIME TO THINK*/
+		printf("%d ms :: %sPhilosopher %d is thinking %s\n",start_clock() - philo->start, PURPLE, philo->id + 1, RESET_COLOR);
+		isittheendofphilo(philo);
+		
 	}
 	return(NULL);
 }
