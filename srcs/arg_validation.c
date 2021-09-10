@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 19:54:15 by msantos-          #+#    #+#             */
-/*   Updated: 2021/07/24 21:31:36 by marcos           ###   ########.fr       */
+/*   Updated: 2021/09/10 17:57:21 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	arg_save(t_info *info,int argc, char **argv)
 	info->num_philos = ft_atoi(argv[1]);
 	info->time_to_eat = ft_atoi(argv[3]);
 	info->time_to_sleep = ft_atoi(argv[4]);
+	info->someone_died;
 	if(argc == 6)
 		info->num_of_meals = ft_atoi(argv[5]);
 	else
@@ -44,7 +45,7 @@ void	arg_save(t_info *info,int argc, char **argv)
 	while(i < info->num_philos)
 	{
 		info->philosophers[i].id = i;
-		info->philosophers[i].status = -1;
+		info->philosophers[i].died = &info->someone_died;
 		info->philosophers[i].num_philos = ft_atoi(argv[1]);
 		info->philosophers[i].time_to_die = ft_atoi(argv[2]);
 		info->philosophers[i].time_to_eat = ft_atoi(argv[3]);

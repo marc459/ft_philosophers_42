@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 17:17:37 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/05 15:22:01 by marcos           ###   ########.fr       */
+/*   Updated: 2021/09/10 18:05:40 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	str_error(char *s)
 
 	i = 0;
 	ft_putstr_fd(s, 2);
-	exit (-1);
+	return(-1);
 }
 
 int	str_isnumber(char *str)

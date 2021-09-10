@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:32:57 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/05 16:38:43 by marcos           ###   ########.fr       */
+/*   Updated: 2021/09/10 17:56:09 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 typedef struct s_philo{
 	int				id;
 	pthread_t		thread;
-	int				status; // 0 eating, 1 sleeping, 2 thinking
+	int				*died;
 	int				num_philos;
 	int				time_to_die;
 	int				time_to_eat;
@@ -48,6 +48,7 @@ typedef struct s_philo{
 typedef struct s_info{
 	int				num_philos;
 	int				time_to_eat;
+	int				someone_died;
 	int				time_to_sleep;
 	int				num_of_meals;
 	t_philo			*philosophers;
