@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:32:57 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/10 17:56:09 by marcos           ###   ########.fr       */
+/*   Updated: 2021/09/11 21:14:23 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,19 @@
 # define CYAN "\033[0;36m"
 # define PURPLE "\033[0;35m"
 # define RESET_COLOR "\033[0;m"
+typedef long long unsigned int uint64_t;
+
 typedef struct s_philo{
 	int				id;
 	pthread_t		thread;
 	int				*died;
 	int				num_philos;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				starving_time;
+	uint64_t		time_to_die;
+	uint64_t		time_to_eat;
+	uint64_t		time_to_sleep;
+	uint64_t		starving_time;
 	int				num_of_meals;
-	int				start;
+	uint64_t		start;
 	pthread_mutex_t	*r_fork; // 0 if not used, 1 if used
 	pthread_mutex_t	*l_fork;
 	
@@ -67,6 +69,6 @@ int			ft_time(int start);
 int			str_isnumber(char *str);
 int			arg_validation(char **argv);
 void		arg_save(t_info *info,int argc, char **argv);
-int			start_clock(void);
+long long	start_clock(void);
 
 #endif

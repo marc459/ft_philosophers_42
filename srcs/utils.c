@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 17:17:37 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/10 18:05:40 by marcos           ###   ########.fr       */
+/*   Updated: 2021/09/12 14:27:01 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,10 @@ int		ft_time(int start)
 		((aux_clock.tv_usec / 1000) + (aux_clock.tv_sec * 1000));
 	return (current_time - start);
 }
-int	start_clock(void)
+long long	start_clock(void)
 {
 	struct timeval	aux_clock;
 
 	gettimeofday(&aux_clock, NULL);
-	return ((int)((aux_clock.tv_usec / 1000)) + (aux_clock.tv_sec * 1000));
+	return ((long long)((aux_clock.tv_usec / 1000)) + (aux_clock.tv_sec * 1000));
 }

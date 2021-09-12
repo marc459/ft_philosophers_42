@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 19:54:15 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/10 18:34:27 by marcos           ###   ########.fr       */
+/*   Updated: 2021/09/12 21:52:58 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ void	arg_save(t_info *info,int argc, char **argv)
 	info->num_philos = ft_atoi(argv[1]);
 	info->time_to_eat = ft_atoi(argv[3]);
 	info->time_to_sleep = ft_atoi(argv[4]);
-	info->someone_died;
+	info->someone_died = 0;
 	if(argc == 6)
 		info->num_of_meals = ft_atoi(argv[5]);
 	else
-		info->num_of_meals = 0;
+		info->num_of_meals = -1;
 	info->philosophers = malloc(sizeof(t_philo) * info->num_philos);
 	forks = malloc(sizeof(pthread_mutex_t) * info->num_philos);
 
@@ -53,9 +53,9 @@ void	arg_save(t_info *info,int argc, char **argv)
 		info->philosophers[i].start = start_clock();
 	    info->philosophers[i].starving_time = start_clock();
 		if(argc == 6)
-			info->num_of_meals = ft_atoi(argv[5]);
+			info->philosophers[i].num_of_meals = ft_atoi(argv[5]);
 		else
-			info->num_of_meals = -1;
+			info->philosophers[i].num_of_meals = -1;
 		i++;
 	}
 }
