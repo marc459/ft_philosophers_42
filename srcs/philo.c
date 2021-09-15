@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:14:04 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/12 22:29:13 by marcos           ###   ########.fr       */
+/*   Updated: 2021/09/15 13:47:38 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ int		isittheendofphilo(t_philo *philo)
 	//printf("%d time: %llu last meal at: %llu, time_to_die: %llu\n",philo->id + 1,start_clock() - philo->start, philo->starving_time - philo->start, philo->time_to_die);
 	if(*philo->died != 1 && philo->num_of_meals != 0)
 	{
-		
+		/*if(150 < (start_clock() - philo->start) && 155 > (start_clock() - philo->start))
+			printf("%d time: %llu last meal at: %llu, time_to_die: %llu\n",philo->id + 1,start_clock() - philo->start, philo->starving_time - philo->start, philo->time_to_die);*/
 		if(philo->time_to_die < (start_clock() - philo->starving_time))
 		{
-		//	printf("%d time: %llu last meal at: %llu, time_to_die: %llu\n",philo->id + 1,start_clock() - philo->start, philo->starving_time - philo->start, philo->time_to_die);
+			//printf("%d time: %llu last meal at: %llu, time_to_die: %llu\n",philo->id + 1,start_clock() - philo->start, philo->starving_time - philo->start, philo->time_to_die);
 			printf("%llu ms :: %s Philosopher %d died%s\n",(uint64_t)(start_clock() - philo->start) ,RED, philo->id + 1, RESET_COLOR);
 			*philo->died = 1;
 			return(1);
@@ -97,7 +98,7 @@ void	*philo_doroutine(void *arg_philo)
 			}
 		}
 		usleep(philo->time_to_eat);
-		//ft_usleep(philo->time_to_eat);
+		ft_usleep(philo->time_to_eat);
 		pthread_mutex_unlock(philo->l_fork);
 		pthread_mutex_unlock(philo->r_fork);
 		philo->num_of_meals--;
@@ -127,12 +128,10 @@ int		philo_meeting(t_info *info)
 		pthread_create(&info->philosophers[i].thread, NULL, philo_doroutine, &info->philosophers[i]);
 		i++;
 	}
-
+	if(hasthephilosate(info) == 1)
+			return(0);
 	while(info->someone_died != 1)
 	{
-		if(hasthephilosate(info) == 1)
-			return(0);
-
 		i = 0;
 		while(i < info->num_philos)
 		{
@@ -159,7 +158,9 @@ int main(int argc, char **argv)
 	if (!arg_validation(argv))
 		return(str_error("Error: \n Incorrect arguments\n"));
 	arg_save(&info ,argc, argv);
-	philo_meeting(&info);
+	if(philo_meeting(&info) == 0)
+		return(1);
+	
 	return (0);
 	
 }
