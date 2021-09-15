@@ -6,7 +6,7 @@
 #    By: marcos <marcos@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 16:49:30 by msantos-          #+#    #+#              #
-#    Updated: 2021/07/24 21:49:14 by marcos           ###   ########.fr        #
+#    Updated: 2021/09/15 14:39:36 by marcos           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJ_PATH = ./objs
 SRC_PATH = ./srcs
 
 #SRCS
-SRCS = philo.c utils.c arg_validation.c
+SRCS = philo.c utils.c arg_validation.c philo_actions.c
 OBJS = $(SRCS:.c=.o)
 
 #OBJS

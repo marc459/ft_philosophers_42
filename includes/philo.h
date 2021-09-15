@@ -6,7 +6,7 @@
 /*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:32:57 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/11 21:14:23 by marcos           ###   ########.fr       */
+/*   Updated: 2021/09/15 14:41:09 by marcos           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,9 @@ int			str_isnumber(char *str);
 int			arg_validation(char **argv);
 void		arg_save(t_info *info,int argc, char **argv);
 long long	start_clock(void);
+
+void	philo_think(t_philo *philo);
+void	philo_eat(t_philo *philo);
+void	philo_sleep(t_philo *philo);
 
 #endif
