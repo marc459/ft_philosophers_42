@@ -6,67 +6,69 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 14:02:16 by marcos            #+#    #+#             */
-/*   Updated: 2021/09/17 16:33:36 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/17 20:12:02 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-void	philo_eat(t_philo *philo)
+void	philo_eat(t_philo *p)
 {
-	/*philo->l_fork = &forks[philo->id];
-	if(philo->id == (philo->num_philos - 1))
-		philo->r_fork = &forks[0];
+	if (p->id == (p->num_philos - 1))
+	{
+		if (*p->died != 1)
+		{
+			pthread_mutex_lock(p->r_fork);
+			printf("%llu ms :: %sPhilosopher %d picked up his left fork.%s\n",
+				start_clock() - p->start, GREEN, p->id + 1, RESET_COLOR);
+		}
+		if (*p->died != 1)
+		{
+			pthread_mutex_lock(p->l_fork);
+			p->starving_time = start_clock();
+			printf("%llu ms :: %sPhilosopher %d picked up his right fork %s\n",
+				start_clock() - p->start, GREEN, p->id + 1, RESET_COLOR);
+			printf("%llu ms :: %sPhilosopher %d is eating%s\n",
+				start_clock() - p->start, CYAN, p->id + 1, RESET_COLOR);
+		}
+	}
 	else
-		philo->r_fork = &forks[philo->id + 1];*/
+	{
+		if (*p->died != 1)
+		{
+			pthread_mutex_lock(p->l_fork);
+			printf("%llu ms :: %sPhilosopher %d picked up his left fork.%s\n",
+				start_clock() - p->start, GREEN, p->id + 1, RESET_COLOR);
+		}
+		if (*p->died != 1)
+		{
+			pthread_mutex_lock(p->r_fork);
+			p->starving_time = start_clock();
+			printf("%llu ms :: %sPhilosopher %d picked up his right fork %s\n",
+				start_clock() - p->start, GREEN, p->id + 1, RESET_COLOR);
+			printf("%llu ms :: %sPhilosopher %d is eating%s\n",
+				start_clock() - p->start, CYAN, p->id + 1, RESET_COLOR);
+		}
+	}
+	ft_usleep(p->time_to_eat);
+	pthread_mutex_unlock(p->l_fork);
+	pthread_mutex_unlock(p->r_fork);
+	p->num_of_meals--;
+}
 
-	/*TIME TO EAT*/
-	if (philo->id == (philo->num_philos - 1))
-	{
-		if (*philo->died != 1)
-		{
-			pthread_mutex_lock(philo->r_fork);
-			printf("%llu ms :: %sPhilosopher %d picked up his left fork.%s\n",(uint64_t)(start_clock() - philo->start),  GREEN, philo->id + 1, RESET_COLOR);
-		}
-		if (*philo->died != 1)
-		{
-			pthread_mutex_lock(philo->l_fork);
-			philo->starving_time = start_clock();
-			printf("%llu ms :: %sPhilosopher %d picked up his right fork %s\n",(uint64_t)(start_clock() - philo->start),  GREEN, philo->id + 1, RESET_COLOR);
-			printf("%llu ms :: %sPhilosopher %d is eating%s\n",(uint64_t)(start_clock() - philo->start), CYAN, philo->id + 1, RESET_COLOR);
-		}
-	}
-	else
-	{
-		if (*philo->died != 1)
-		{
-			pthread_mutex_lock(philo->l_fork);
-			printf("%llu ms :: %sPhilosopher %d picked up his left fork.%s\n",start_clock() - philo->start,  GREEN, philo->id + 1, RESET_COLOR);
-		}
-		if (*philo->died != 1)
-		{
-			pthread_mutex_lock(philo->r_fork);
-			philo->starving_time = start_clock();
-			printf("%llu ms :: %sPhilosopher %d picked up his right fork %s\n",start_clock() - philo->start,  GREEN, philo->id + 1, RESET_COLOR);
-			printf("%llu ms :: %sPhilosopher %d is eating%s\n",start_clock() - philo->start, CYAN, philo->id + 1, RESET_COLOR);
-		}
-	}
-	ft_usleep(philo->time_to_eat);
-	pthread_mutex_unlock(philo->l_fork);
-	pthread_mutex_unlock(philo->r_fork);
-	philo->num_of_meals--;
-	
-}
-void	philo_sleep(t_philo *philo)
+void	philo_sleep(t_philo *p)
 {
-	if (*philo->died != 1)
+	if (*p->died != 1)
 	{
-		printf("%llu ms :: %sPhilosopher %d is sleeping %s\n",start_clock() - philo->start, YELLOW, philo->id + 1, RESET_COLOR);
-		ft_usleep(philo->time_to_sleep);
+		printf("%llu ms :: %sPhilosopher %d is sleeping %s\n",
+			start_clock() - p->start, YELLOW, p->id + 1, RESET_COLOR);
+		ft_usleep(p->time_to_sleep);
 	}
 }
-void	philo_think(t_philo *philo)
+
+void	philo_think(t_philo *p)
 {
-	if (*philo->died != 1)
-		printf("%llu ms :: %sPhilosopher %d is thinking %s\n",start_clock() - philo->start, PURPLE, philo->id + 1, RESET_COLOR);
+	if (*p->died != 1)
+		printf("%llu ms :: %sPhilosopher %d is thinking %s\n",
+			start_clock() - p->start, PURPLE, p->id + 1, RESET_COLOR);
 }

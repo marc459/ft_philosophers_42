@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 17:17:37 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/12 14:27:01 by marcos           ###   ########.fr       */
+/*   Updated: 2021/09/17 18:53:03 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	str_error(char *s)
 
 	i = 0;
 	ft_putstr_fd(s, 2);
-	return(-1);
+	return (-1);
 }
 
 int	str_isnumber(char *str)
@@ -56,10 +56,9 @@ int	str_isnumber(char *str)
 	{
 		if (str[i] < '0' || str[i] > '9')
 		{
-			printf("--%c",str[i]);
+			printf("--%c", str[i]);
 			return (0);
-		}
-			
+		}	
 		i++;
 	}
 	return (1);
@@ -92,33 +91,4 @@ int	ft_atoi(const char *str)
 	if (minus == 1)
 		value = value * -1;
 	return (value);
-}
-
-void	ft_usleep(int miliseconds)
-{
-	int	start;
-
-	start = ft_time(0);
-	while (ft_time(start) < miliseconds)
-	{
-		usleep(1);
-	}
-}
-
-int		ft_time(int start)
-{
-	int			current_time;
-	struct timeval		aux_clock;
-
-	gettimeofday(&aux_clock, NULL);
-	current_time = (int)
-		((aux_clock.tv_usec / 1000) + (aux_clock.tv_sec * 1000));
-	return (current_time - start);
-}
-long long	start_clock(void)
-{
-	struct timeval	aux_clock;
-
-	gettimeofday(&aux_clock, NULL);
-	return ((long long)((aux_clock.tv_usec / 1000)) + (aux_clock.tv_sec * 1000));
 }
