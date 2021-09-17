@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marcos <marcos@student.42.fr>              +#+  +:+       +#+         #
+#    By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 16:49:30 by msantos-          #+#    #+#              #
-#    Updated: 2021/09/15 14:39:36 by marcos           ###   ########.fr        #
+#    Updated: 2021/09/17 15:51:29 by msantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,8 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 
 philo: $(OBJ)
 	$(CC) $(THREADFLAG) $(OBJ) -o $(PHILO)
+normi:
+	norminette srcs/*.c
 
 clean:
 	@rm -rf $(OBJ_PATH)

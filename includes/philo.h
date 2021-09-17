@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:32:57 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/15 14:41:09 by marcos           ###   ########.fr       */
+/*   Updated: 2021/09/17 16:35:23 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,9 @@ typedef struct s_info{
 	int				time_to_sleep;
 	int				num_of_meals;
 	t_philo			*philosophers;
-	//int				*used_forks;
-	//pthread_mutex_t	*mutex;
+	pthread_mutex_t *forkss;
 }				t_info;
 
-pthread_mutex_t *forks;
 
 size_t		ft_strlen(const char *s);
 void		ft_putstr_fd(char *s, int fd);

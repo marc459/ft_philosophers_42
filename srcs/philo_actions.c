@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_actions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marcos <marcos@student.42.fr>              +#+  +:+       +#+        */
+/*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 14:02:16 by marcos            #+#    #+#             */
-/*   Updated: 2021/09/15 16:51:14 by marcos           ###   ########.fr       */
+/*   Updated: 2021/09/17 16:33:36 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	philo_eat(t_philo *philo)
 {
-	philo->l_fork = &forks[philo->id];
+	/*philo->l_fork = &forks[philo->id];
 	if(philo->id == (philo->num_philos - 1))
 		philo->r_fork = &forks[0];
 	else
-		philo->r_fork = &forks[philo->id + 1];
+		philo->r_fork = &forks[philo->id + 1];*/
 
 	/*TIME TO EAT*/
 	if (philo->id == (philo->num_philos - 1))
