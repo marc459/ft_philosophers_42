@@ -6,15 +6,18 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 15:21:21 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/17 18:54:20 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/18 20:44:51 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
-void	print_colormsg(char *color, char *msg)
+void	print_message(t_philo *p, char *message, char *color)
 {
-	printf("%s%s%s", color, msg, RESET_COLOR);
+	pthread_mutex_lock(p->print_msg);
+	printf("%llu ms :: %s Philosopher %d - %s %s\n",
+		start_clock() - p->start, color, p->id + 1, message, RESET_COLOR);
+	pthread_mutex_unlock(p->print_msg);
 }
 
 void	ft_usleep(int miliseconds)
@@ -46,4 +49,10 @@ long long	start_clock(void)
 	gettimeofday(&aux_clock, NULL);
 	return ((long long)((aux_clock.tv_usec / 1000))
 		+ (aux_clock.tv_sec * 1000));
+}
+
+void	freeforall(t_info *info)
+{
+	free(info->philos);
+	free(info->forkss);
 }

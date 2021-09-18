@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:14:04 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/17 20:08:31 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/18 17:20:14 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	hasthephilosate(t_info *info)
 			return (0);
 		i++;
 	}
+	info->someone_died = 1;
 	return (1);
 }
 
@@ -73,13 +74,11 @@ int	philo_meeting(t_info *info)
 	}
 	while (info->someone_died != 1)
 	{
-		if (hasthephilosate(info) == 1)
-			return (0);
+		hasthephilosate(info);
 		i = 0;
 		while (i < info->num_philos)
 		{
-			if (isittheendofphilo(&info->philos[i]) == 1)
-				return (0);
+			isittheendofphilo(&info->philos[i]);
 			i++;
 		}
 	}
@@ -92,6 +91,11 @@ int	philo_meeting(t_info *info)
 	return (1);
 }
 
+void	anyleaks()
+{
+	system("leaks philo");
+}
+
 int	main(int argc, char **argv)
 {
 	t_info	info;
@@ -102,5 +106,7 @@ int	main(int argc, char **argv)
 		return (str_error("Error: \n Incorrect arguments\n"));
 	arg_save(&info, argc, argv);
 	philo_meeting(&info);
+	freeforall(&info);
+	//system("leaks philo");
 	return (0);
 }

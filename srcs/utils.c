@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 17:17:37 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/17 18:53:03 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/18 15:14:11 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,7 @@ int	str_isnumber(char *str)
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
-		{
-			printf("--%c", str[i]);
 			return (0);
-		}	
 		i++;
 	}
 	return (1);

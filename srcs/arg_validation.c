@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 19:54:15 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/17 20:08:31 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/18 20:34:51 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	arg_save(t_info *info, int argc, char **argv)
 	info->someone_died = 0;
 	info->philos = malloc(sizeof(t_philo) * info->num_philos);
 	info->forkss = malloc(sizeof(pthread_mutex_t) * info->num_philos);
+	
 	while (i < info->num_philos)
 	{
 		info->philos[i].id = i;
@@ -55,6 +56,7 @@ void	arg_save(t_info *info, int argc, char **argv)
 		else
 			info->philos[i].r_fork =
 				&info->forkss[info->philos[i].id + 1];
+		info->philos[i].print_msg = &info->print;
 		i++;
 	}
 }

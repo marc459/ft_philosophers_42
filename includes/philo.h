@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:32:57 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/17 20:08:54 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/18 20:44:42 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_philo{
 	uint64_t		start;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
+	pthread_mutex_t	*print_msg;
 }				t_philo;
 
 typedef struct s_info{
@@ -51,6 +52,7 @@ typedef struct s_info{
 	int				someone_died;
 	t_philo			*philos;
 	pthread_mutex_t	*forkss;
+	pthread_mutex_t	print;
 }				t_info;
 
 size_t		ft_strlen(const char *s);
@@ -66,5 +68,7 @@ long long	start_clock(void);
 void		philo_think(t_philo *philo);
 void		philo_eat(t_philo *philo);
 void		philo_sleep(t_philo *philo);
+void		freeforall(t_info *info);
+void		print_message(t_philo *p, char *message, char *color);
 
 #endif
