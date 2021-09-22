@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 14:02:16 by marcos            #+#    #+#             */
-/*   Updated: 2021/09/18 20:50:53 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/22 20:49:01 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	philo_eat(t_philo *p)
 {
+	printf("2--%p-%p\n", p->l_fork, p->r_fork);
 	if (p->id == (p->num_philos - 1))
 	{
 		if (*p->died != 1)

@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:14:04 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/18 17:20:14 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/22 22:15:03 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	isittheendofphilo(t_philo *philo)
 			printf ("%llu ms :: %s Philo %d died%s\n",
 				start_clock() - philo->start, RED, philo->id + 1, RESET_COLOR);
 			*philo->died = 1;
+			pthread_detach(philo->thread);
 			return (1);
 		}
 	}
@@ -97,6 +98,20 @@ void	anyleaks()
 	system("leaks philo");
 }
 
+void	threads_destroy(t_info *info, int num_of_philo)
+{
+		int	i;
+
+		pthread_mutex_destroy(&info->print);
+		i = 0;
+		while  (i < num_of_philo)
+		{
+			pthread_mutex_destroy(info->philos[i].l_fork);
+			pthread_mutex_destroy(info->philos[i].r_fork);
+			i++;
+		}
+}
+
 int	main(int argc, char **argv)
 {
 	t_info	info;
@@ -107,6 +122,7 @@ int	main(int argc, char **argv)
 		return (str_error("Error: \n Incorrect arguments\n"));
 	arg_save(&info, argc, argv);
 	philo_meeting(&info);
+	threads_destroy(&info, info.num_philos);
 	freeforall(&info);
 	//system("leaks philo");
 	return (0);
