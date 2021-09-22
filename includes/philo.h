@@ -29,7 +29,7 @@
 # define PURPLE "\033[0;35m"
 # define RESET_COLOR "\033[0;m"
 
-typedef long long unsigned int	t_uint64_t;
+typedef long long unsigned int	uint64_t;
 
 typedef struct s_philo{
 	int				id;

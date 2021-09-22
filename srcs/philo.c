@@ -31,6 +31,7 @@ int	isittheendofphilo(t_philo *philo)
 {
 	if (*philo->died != 1 && philo->num_of_meals != 0)
 	{
+	//printf("%d time: %llu last meal at: %llu, time_to_die: %llu\n",philo->id + 1,start_clock() - philo->start, philo->starving_time - philo->start, philo->time_to_die);
 		if (philo->time_to_die < (start_clock() - philo->starving_time))
 		{
 			printf ("%llu ms :: %s Philo %d died%s\n",
