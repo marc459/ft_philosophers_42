@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 19:54:15 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/22 20:49:20 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/23 17:37:33 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,11 @@ int	arg_validation(char **argv)
 	return (1);
 }
 
-void	arg_save(t_info *info, int argc, char **argv)
+void	philo_save(t_info *info, int argc, char **argv)
 {
 	int	i;
 
 	i = 0;
-	info->num_philos = ft_atoi(argv[1]);
-	info->someone_died = 0;
-	info->philos = malloc(sizeof(t_philo) * info->num_philos);
-	info->forkss = malloc(sizeof(pthread_mutex_t *) * info->num_philos);
-
-	pthread_mutex_init(&info->print, NULL);
-	pthread_mutex_unlock(&info->print);
-	while(i <  info->num_philos)
-	{
-		pthread_mutex_init(&info->forkss[i], NULL);
-		pthread_mutex_unlock(&info->forkss[i]);
-		i++;
-	}
-	i= 0;
-	
 	while (i < info->num_philos)
 	{
 		info->philos[i].id = i;
@@ -61,15 +46,31 @@ void	arg_save(t_info *info, int argc, char **argv)
 		else
 			info->philos[i].num_of_meals = -1;
 		info->philos[i].l_fork = &info->forkss[info->philos[i].id];
-		/*if (info->num_philos == 1)
-			info->philos[i].r_fork = info->philos[i].l_fork;*/
 		if (info->philos[i].id == (info->philos[i].num_philos - 1))
 			info->philos[i].r_fork = &info->forkss[0];
 		else
-			info->philos[i].r_fork =
-				&info->forkss[info->philos[i].id + 1];
+			info->philos[i].r_fork = &info->forkss[info->philos[i].id + 1];
 		info->philos[i].print_msg = &info->print;
-		printf("1-%p-%p\n", info->philos[i].l_fork, info->philos[i].r_fork);
 		i++;
 	}
+}
+
+void	arg_save(t_info *info, int argc, char **argv)
+{
+	int	i;
+
+	i = 0;
+	info->num_philos = ft_atoi(argv[1]);
+	info->someone_died = 0;
+	info->philos = malloc(sizeof(t_philo) * info->num_philos);
+	info->forkss = malloc(sizeof(pthread_mutex_t *) * info->num_philos);
+	pthread_mutex_init(&info->print, NULL);
+	pthread_mutex_unlock(&info->print);
+	while (i < info->num_philos)
+	{
+		pthread_mutex_init(&info->forkss[i], NULL);
+		pthread_mutex_unlock(&info->forkss[i]);
+		i++;
+	}
+	philo_save(info, argc, argv);
 }

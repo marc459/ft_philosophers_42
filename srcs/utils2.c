@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 15:21:21 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/18 20:44:51 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/23 16:51:32 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,39 +20,14 @@ void	print_message(t_philo *p, char *message, char *color)
 	pthread_mutex_unlock(p->print_msg);
 }
 
-void	ft_usleep(int miliseconds)
-{
-	int	start;
-
-	start = ft_time(0);
-	while (ft_time(start) < miliseconds)
-	{
-		usleep(1);
-	}
-}
-
-int	ft_time(int start)
-{
-	int					current_time;
-	struct timeval		aux_clock;
-
-	gettimeofday(&aux_clock, NULL);
-	current_time = (int)
-		((aux_clock.tv_usec / 1000) + (aux_clock.tv_sec * 1000));
-	return (current_time - start);
-}
-
-long long	start_clock(void)
-{
-	struct timeval	aux_clock;
-
-	gettimeofday(&aux_clock, NULL);
-	return ((long long)((aux_clock.tv_usec / 1000))
-		+ (aux_clock.tv_sec * 1000));
-}
-
 void	freeforall(t_info *info)
 {
 	free(info->philos);
 	free(info->forkss);
+}
+
+void	threads_destroy(t_info *info, int num_of_philo)
+{
+	pthread_mutex_destroy(&info->print);
+	pthread_mutex_destroy(info->forkss);
 }

@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:32:57 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/22 20:18:09 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/23 17:38:06 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define PURPLE "\033[0;35m"
 # define RESET_COLOR "\033[0;m"
 
-typedef long long unsigned int	uint64_t;
+typedef long long unsigned int	t_uint64_t;
 
 typedef struct s_philo{
 	int				id;
@@ -70,5 +70,10 @@ void		philo_eat(t_philo *philo);
 void		philo_sleep(t_philo *philo);
 void		freeforall(t_info *info);
 void		print_message(t_philo *p, char *message, char *color);
+void		threads_destroy(t_info *info, int num_of_philo);
+void		endofmeeting(t_info *info);
+int			isittheendofphilo(t_philo *philo);
+void		endofmeeting(t_info *info);
+void		philo_save(t_info *info, int argc, char **argv);
 
 #endif
