@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 19:54:15 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/23 17:37:33 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/23 21:22:54 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ void	philo_save(t_info *info, int argc, char **argv)
 	int	i;
 
 	i = 0;
+	while(i < info->num_philos)
+	{
+		fprintf(stderr,"        %p\n",&info->forkss[i]);
+		i++;
+	}
+	i = 0;
 	while (i < info->num_philos)
 	{
 		info->philos[i].id = i;
@@ -45,12 +51,14 @@ void	philo_save(t_info *info, int argc, char **argv)
 			info->philos[i].num_of_meals = ft_atoi(argv[5]);
 		else
 			info->philos[i].num_of_meals = -1;
-		info->philos[i].l_fork = &info->forkss[info->philos[i].id];
-		if (info->philos[i].id == (info->philos[i].num_philos - 1))
+		info->philos[i].l_fork = &info->forkss[i];
+		if (i == (info->philos[i].num_philos - 1))
 			info->philos[i].r_fork = &info->forkss[0];
 		else
-			info->philos[i].r_fork = &info->forkss[info->philos[i].id + 1];
+			info->philos[i].r_fork = &info->forkss[i + 1];
 		info->philos[i].print_msg = &info->print;
+		//fprintf(stderr,"     lf-%p\n%d\n     rf-%p\n\n", info->philos[i].l_fork, i, info->philos[i].r_fork);
+		//fprintf(stderr, "%s", "esto es un debuger");
 		i++;
 	}
 }
@@ -65,11 +73,9 @@ void	arg_save(t_info *info, int argc, char **argv)
 	info->philos = malloc(sizeof(t_philo) * info->num_philos);
 	info->forkss = malloc(sizeof(pthread_mutex_t *) * info->num_philos);
 	pthread_mutex_init(&info->print, NULL);
-	pthread_mutex_unlock(&info->print);
 	while (i < info->num_philos)
 	{
 		pthread_mutex_init(&info->forkss[i], NULL);
-		pthread_mutex_unlock(&info->forkss[i]);
 		i++;
 	}
 	philo_save(info, argc, argv);

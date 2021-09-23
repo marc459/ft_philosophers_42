@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:53:02 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/23 15:53:16 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/23 18:48:42 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ void	ft_usleep(int miliseconds)
 	{
 		usleep(1);
 	}
+}
+
+void	ft_usleep2(int miliseconds, int n_philos)
+{
+	int	start;
+
+	start = start_clock() * 1000;
+	miliseconds = 1000 * miliseconds;
+	while ((start_clock() * 1000) < (start + miliseconds))
+		usleep(n_philos);
 }
 
 int	ft_time(int start)
