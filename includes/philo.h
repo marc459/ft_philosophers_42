@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:32:57 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/23 20:24:01 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/24 18:57:59 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void		ft_putstr_fd(char *s, int fd);
 int			str_error(char *s);
 int			ft_atoi(const char *str);
 void		ft_usleep(int miliseconds);
+void		ft_usleep2(int no_philos, uint64_t millisec);
 int			ft_time(int start);
 int			str_isnumber(char *str);
 int			arg_validation(char **argv);
@@ -75,5 +76,6 @@ void		endofmeeting(t_info *info);
 int			isittheendofphilo(t_philo *philo);
 void		endofmeeting(t_info *info);
 void		philo_save(t_info *info, int argc, char **argv);
+long		ft_atol(const char *str);
 
 #endif

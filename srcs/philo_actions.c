@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 14:02:16 by marcos            #+#    #+#             */
-/*   Updated: 2021/09/23 18:47:30 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/24 17:50:00 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	philo_eat(t_philo *p)
 {
-	if (p->id == (p->num_philos - 1))
+	if (p->id % 2)
 	{
 		pthread_mutex_lock(p->r_fork);
 		print_message(p, "picked up his right fork", GREEN);
@@ -30,7 +30,7 @@ void	philo_eat(t_philo *p)
 	}
 	p->starving_time = start_clock();
 	print_message(p, "is eating", CYAN);
-	ft_usleep(p->time_to_eat);
+	ft_usleep2(p->num_philos, p->time_to_eat);
 	pthread_mutex_unlock(p->l_fork);
 	pthread_mutex_unlock(p->r_fork);
 	p->num_of_meals--;
@@ -41,7 +41,7 @@ void	philo_sleep(t_philo *p)
 	if (*p->died != 1)
 	{
 		print_message(p, "is sleeping", YELLOW);
-		ft_usleep(p->time_to_sleep);
+		ft_usleep2(p->num_philos, p->time_to_sleep);
 	}
 }
 
@@ -49,4 +49,5 @@ void	philo_think(t_philo *p)
 {
 	if (*p->died != 1)
 		print_message(p, "is thinking", PURPLE);
+	//usleep(10);
 }
