@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 15:21:21 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/24 18:57:49 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/24 22:02:29 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	freeforall(t_info *info)
 	free(info->forkss);
 }
 
-void	threads_destroy(t_info *info, int num_of_philo)
+void	threads_destroy(t_info *info)
 {
 	pthread_mutex_destroy(&info->print);
 	pthread_mutex_destroy(info->forkss);

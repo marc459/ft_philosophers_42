@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:53:02 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/24 17:42:38 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/24 22:03:07 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_usleep(int miliseconds)
 
 void	ft_usleep2(int no_philos, uint64_t millisec)
 {
-	struct timeval	start;
 	uint64_t		time;
 	uint64_t		end_ms;
 

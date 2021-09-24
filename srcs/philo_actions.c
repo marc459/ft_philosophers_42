@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 14:02:16 by marcos            #+#    #+#             */
-/*   Updated: 2021/09/24 17:50:00 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/24 21:14:26 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	philo_eat(t_philo *p)
 {
-	if (p->id % 2)
+	if (p->id == p->num_philos - 1)
 	{
 		pthread_mutex_lock(p->r_fork);
 		print_message(p, "picked up his right fork", GREEN);
@@ -49,5 +49,5 @@ void	philo_think(t_philo *p)
 {
 	if (*p->died != 1)
 		print_message(p, "is thinking", PURPLE);
-	//usleep(10);
+	usleep(10);
 }

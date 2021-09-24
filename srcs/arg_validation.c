@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 19:54:15 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/24 19:08:09 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/24 22:05:43 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,6 @@ void	philo_save(t_info *info, int argc, char **argv)
 	int	i;
 
 	i = 0;
-	while(i < info->num_philos)
-	{
-		fprintf(stderr,"        %p\n",&info->forkss[i]);
-		i++;
-	}
 	i = 0;
 	while (i < info->num_philos)
 	{
@@ -61,8 +56,6 @@ void	philo_save(t_info *info, int argc, char **argv)
 		else
 			info->philos[i].r_fork = &info->forkss[i + 1];
 		info->philos[i].print_msg = &info->print;
-		//fprintf(stderr,"     lf-%p\n%d\n     rf-%p\n\n", info->philos[i].l_fork, i, info->philos[i].r_fork);
-		//fprintf(stderr, "%s", "esto es un debuger");
 		i++;
 	}
 }
@@ -75,7 +68,7 @@ void	arg_save(t_info *info, int argc, char **argv)
 	info->num_philos = ft_atoi(argv[1]);
 	info->someone_died = 0;
 	info->philos = malloc(sizeof(t_philo) * info->num_philos);
-	info->forkss = malloc(sizeof(pthread_mutex_t *) * info->num_philos);
+	info->forkss = malloc(sizeof(pthread_mutex_t) * info->num_philos);
 	pthread_mutex_init(&info->print, NULL);
 	while (i < info->num_philos)
 	{

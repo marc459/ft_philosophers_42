@@ -6,7 +6,7 @@
 #    By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/17 16:49:30 by msantos-          #+#    #+#              #
-#    Updated: 2021/09/23 19:25:22 by msantos-         ###   ########.fr        #
+#    Updated: 2021/09/24 21:46:43 by msantos-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,10 +36,10 @@ all:  philo
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir -p $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) -g $(INCLUDES) -o $@  -c $^
+	@$(CC) -g $(CFLAGS)  $(INCLUDES) -o $@  -c $^
 
 philo: $(OBJ)
-	$(CC) $(THREADFLAG) $(OBJ) -o $(PHILO)
+	$(CC)   $(OBJ) -o $(PHILO)
 normi:
 	norminette srcs/*.c
 
