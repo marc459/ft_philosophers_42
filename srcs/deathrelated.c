@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 16:18:13 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/23 16:34:12 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/25 22:28:18 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,25 +36,27 @@ int	isittheendofphilo(t_philo *philo)
 			printf ("%llu ms :: %s Philo %d died%s\n",
 				start_clock() - philo->start, RED, philo->id + 1, RESET_COLOR);
 			*philo->died = 1;
-			pthread_detach(philo->thread);
 			return (1);
 		}
 	}
 	return (0);
 }
 
-void	endofmeeting(t_info *info)
+int	endofmeeting(t_info *info)
 {
 	int	i;
 
 	while (info->someone_died != 1)
 	{
-		hasthephilosate(info);
+		if (hasthephilosate(info))
+			return (1);
 		i = 0;
 		while (i < info->num_philos)
 		{
-			isittheendofphilo(&info->philos[i]);
+			if (isittheendofphilo(&info->philos[i]))
+				return (1);
 			i++;
 		}
 	}
+	return (0);
 }

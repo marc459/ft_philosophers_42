@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:14:04 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/24 22:05:04 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/25 22:32:43 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@ void	*philo_doroutine(void *arg_philo)
 	t_philo			*philo;
 
 	philo = (t_philo *)arg_philo;
-	
 	if ((philo->id + 1) % 2 == 0)
-		usleep(100);
+		usleep(300);
 	while (*philo->died != 1)
 	{
 		philo_eat(philo);
@@ -42,7 +41,15 @@ int	philo_meeting(t_info *info)
 			philo_doroutine, &info->philos[i]);
 		i++;
 	}
-	endofmeeting(info);
+	i = 0;
+	if (endofmeeting(info))
+	{
+		while (i < info->num_philos)
+		{
+			pthread_detach(info->philos[i].thread);
+			i++;
+		}
+	}
 	i = 0;
 	while (i < info->num_philos)
 	{

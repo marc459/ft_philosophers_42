@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 19:54:15 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/24 22:05:43 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/25 20:36:38 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	arg_validation(char **argv)
 	int	i;
 
 	i = 1;
-	if(atol(argv[1]) == 0 || atol(argv[2]) == 0)
-		return(0);
+	if (atol(argv[1]) == 0 || atol(argv[2]) == 0)
+		return (0);
 	while (argv[i])
 	{
 		if (!str_isnumber(argv[i]))
@@ -34,7 +34,6 @@ void	philo_save(t_info *info, int argc, char **argv)
 {
 	int	i;
 
-	i = 0;
 	i = 0;
 	while (i < info->num_philos)
 	{

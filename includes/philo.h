@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:32:57 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/24 22:02:34 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/25 22:19:28 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,8 @@ void		philo_sleep(t_philo *philo);
 void		freeforall(t_info *info);
 void		print_message(t_philo *p, char *message, char *color);
 void		threads_destroy(t_info *info);
-void		endofmeeting(t_info *info);
 int			isittheendofphilo(t_philo *philo);
-void		endofmeeting(t_info *info);
+int			endofmeeting(t_info *info);
 void		philo_save(t_info *info, int argc, char **argv);
 long		ft_atol(const char *str);
 
