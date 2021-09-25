@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 14:02:16 by marcos            #+#    #+#             */
-/*   Updated: 2021/09/25 22:35:18 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/25 22:37:11 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ void	philo_think(t_philo *p)
 {
 	if (*p->died != 1)
 		print_message(p, "is thinking", PURPLE);
-	//usleep(70);
+	usleep(70);
 }
