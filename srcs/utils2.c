@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/26 15:21:21 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/28 13:45:13 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/28 17:45:31 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_message(t_philo *p, char *message, char *color)
 	if (*p->died == 0)
 	{
 		pthread_mutex_lock(p->print_msg);
-		printf("%llu ms :: %s Philosopher %d - %s %s\n",
+		printf("%llu ms :: %s Philosopher %d %s %s\n",
 			start_clock() - p->start, color, p->id + 1, message, RESET_COLOR);
 		pthread_mutex_unlock(p->print_msg);
 	}

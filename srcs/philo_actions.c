@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 14:02:16 by marcos            #+#    #+#             */
-/*   Updated: 2021/09/28 13:45:55 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/28 17:46:38 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	philo_eat(t_philo *p)
 {
-	if (*p->died != 1)
+	if (*p->died == 0)
 	{
 		if (p->id == p->num_philos - 1)
 		{
@@ -41,7 +41,7 @@ void	philo_eat(t_philo *p)
 
 void	philo_sleep(t_philo *p)
 {
-	if (*p->died != 1)
+	if (*p->died == 0)
 	{
 		print_message(p, "is sleeping", YELLOW);
 		ft_usleep2(p->num_philos, p->time_to_sleep);
@@ -50,7 +50,7 @@ void	philo_sleep(t_philo *p)
 
 void	philo_think(t_philo *p)
 {
-	if (*p->died != 1)
+	if (*p->died == 0)
 		print_message(p, "is thinking", PURPLE);
 	usleep(50);
 }

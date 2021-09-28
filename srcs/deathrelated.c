@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 16:18:13 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/28 13:31:19 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/28 17:46:31 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	isittheendofphilo(t_philo *philo)
 			printf ("%llu ms :: %s Philo %d died%s\n",
 				start_clock() - philo->start, RED, philo->id + 1, RESET_COLOR);
 			*philo->died = 1;
+			pthread_mutex_lock(philo->print_msg);
 			return (1);
 		}
 	}

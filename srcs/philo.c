@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 13:14:04 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/28 13:47:23 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/28 17:47:18 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	philo_meeting(t_info *info)
 	i = 0;
 	if (endofmeeting(info))
 	{
-		
 		while (i < info->num_philos)
 		{
 			pthread_detach(info->philos[i].thread);
