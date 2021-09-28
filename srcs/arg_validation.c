@@ -6,7 +6,7 @@
 /*   By: msantos- <msantos-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/20 19:54:15 by msantos-          #+#    #+#             */
-/*   Updated: 2021/09/25 20:36:38 by msantos-         ###   ########.fr       */
+/*   Updated: 2021/09/28 11:51:30 by msantos-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@ int	arg_validation(char **argv)
 	int	i;
 
 	i = 1;
-	if (atol(argv[1]) == 0 || atol(argv[2]) == 0)
+	if (ft_atol(argv[1]) == 0
+		|| ft_atol(argv[1]) > 200 || ft_atol(argv[2]) == 0)
+		return (0);
+	if (argv[5] && ft_atol(argv[5]) == 0)
 		return (0);
 	while (argv[i])
 	{
 		if (!str_isnumber(argv[i]))
 			return (0);
-		if (atol(argv[i]) > 2147483647 || atol(argv[i]) < -2147483648)
+		if (ft_atol(argv[i]) > 2147483647 || ft_atol(argv[i]) < -2147483648)
 			return (0);
 		i++;
 	}
