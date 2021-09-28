@@ -11,3 +11,7 @@ ALL PHILOS SHOULD LIVE
 ANY PHILO SHOULD DIE OR THE PROGRAM FINISHES
 ./philo 5 510 200 200
 ./philo 4 310 200 100
+
+
+//CHECK THREADS ACTUVITY
+make re CC="gcc -Wall -Wextra -Werror -fsanitize=thread" 
